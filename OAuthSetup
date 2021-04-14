@@ -1,0 +1,46 @@
+You can follow the below for the basic configuration steps to get the Jira mail handler using the new OAuth 2.0 authentication method connected to an O365 or a Gmail mailbox:-
+
+
+1.	Log in as a user with the JIRA System Administrators global permission.
+2.	Navigate to Administration > System > OAuth 2.0
+3.	Click on Add new integration
+4.	At the "Service provider", select Microsoft
+5.	Click on Copy at the Redirect URL field
+6.	Let's login to "https://portal.azure.com/"
+7.	Click on App registrations
+8.	Click on New registration
+9.	Let's pickup a friendly name so it will be easier to identify
+10.	Under the "Supported account types" section, let's choose "Accounts in any organizational directory (Any Azure AD directory - Multitenant) and personal Microsoft accounts (e.g. Skype, Xbox)"
+11.	Under the "Redirect URI" section, let's pickup Web and insert the URL from the step #5 above
+12.	Click on Register
+13.	Click on API permissions
+14.	Click on Add a permission
+15.	Click on Microsoft Graph
+16.	Select Delegated permissions
+17.	Let's select the following permissions: 
+18.	OpenId permissions: offline_access
+19.	IMAP: IMAP.AccessAsUser.All
+20.	POP: POP.AccessAsUser.All
+1.	Click on Add permissions
+2.	Click on Grant admin consent for ...
+3.	Click on Certificates & secrets
+4.	Click on New client secret
+5.	Choose a description and expiration date
+6.	Take note of the Value generated (this will be used as the "Client secret" at Jira)
+7.	Click on Overview
+8.	Take note of the Application (client) ID (this will be used as the "Client ID" at Jira)
+9.	Let's go back to Jira and complete the configuration by inserting the following details: 
+1.	Client ID (from step #25 above)
+2.	Client secret (from step #23 above)
+3.	Scopes: "https://outlook.office.com/IMAP.AccessAsUser.All", "https://outlook.office.com/POP.AccessAsUser.All" and "offline_access"
+10.	Click on Save
+11.	Test the connection
+ If the connection was successful, please proceed
+12.	Navigate to Administration > System > Incoming Mail
+13.	Click on Add mail server
+14.	At the "Service Provider" field, let's pick up Microsoft Exchange Online / Outlook (IMAP)
+15.	At the "Username" field, insert the email address being used by Jira
+16.	At the "Authentication method" field, select the new server created under the OAuth 2.0 menu
+17.	Click on Authorize
+18.	Click on Test Connection
+19.	Click on Save
